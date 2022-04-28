@@ -8,6 +8,7 @@ import {  SecurityConfig } from "./security-config";
 import { AuthenticationController } from "./controller/authentication.controller";
 import { JwtStrategy } from "./strategy/jwt.strategy";
 import { ConfigModule } from "@nestjs/config";
+import {PasswordEncoder} from "./password/password-encoder.service";
 
 @Module({
     imports: [
@@ -19,7 +20,7 @@ import { ConfigModule } from "@nestjs/config";
             signOptions: { expiresIn: "60m" },
         })
     ],
-    providers: [AuthenticationService, LocalStrategy, JwtStrategy, SecurityConfig],
+    providers: [AuthenticationService, LocalStrategy, JwtStrategy, PasswordEncoder, SecurityConfig],
     controllers: [AuthenticationController],
 })
 export class SecurityModule {

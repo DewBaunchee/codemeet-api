@@ -1,30 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
+import {from, map, Observable} from "rxjs";
+import {Person} from "../entity/person.entity";
+import {InjectRepository} from "@nestjs/typeorm";
+import {Repository} from "typeorm";
 
 @Injectable()
 export class PersonService {
-    private readonly users: any[];
 
-    constructor() {
-        this.users = [
-            {
-                userId: 1,
-                username: 'john',
-                password: 'changeme',
-            },
-            {
-                userId: 2,
-                username: 'chris',
-                password: 'secret',
-            },
-            {
-                userId: 3,
-                username: 'maria',
-                password: 'guess',
-            },
-        ];
+    constructor(@InjectRepository(Person) private readonly personRepository: Repository<Person>) {
     }
 
-    async findOne(username: string): Promise<any> {
-        return this.users.find(user => user.username === username);
+    public create(person: Person): Observable<Person> {
+        return from(this.personRepository.insert(person))
+            .pipe(map(() => person));
+    }
+
+    public get(phoneNumber: string): Observable<Person> {
+        return from(this.personRepository.findOne({phoneNumber}));
     }
 }
