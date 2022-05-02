@@ -1,9 +1,10 @@
-import { Module } from "@nestjs/common";
-import { SecurityModule } from "./security/security.module";
-import { PersonModule } from "./person/person.module";
-import { ConfigModule } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import {Person} from "./person/entity/person.entity";
+import {Module} from "@nestjs/common";
+import {SecurityModule} from "./security/security.module";
+import {PersonModule} from "./person/person.module";
+import {ConfigModule} from "@nestjs/config";
+import {TypeOrmModule} from "@nestjs/typeorm";
+import {DomainModule} from "./domain/domain.module";
+import * as path from "path";
 
 @Module({
     imports: [
@@ -12,6 +13,7 @@ import {Person} from "./person/entity/person.entity";
             isGlobal: true
         }),
         SecurityModule,
+        DomainModule,
         PersonModule,
         TypeOrmModule.forRoot({
             type: "postgres",
@@ -20,7 +22,7 @@ import {Person} from "./person/entity/person.entity";
             username: process.env.DATABASE_USERNAME,
             password: process.env.DATABASE_PASSWORD,
             database: process.env.DATABASE_NAME,
-            entities: [Person],
+            entities: [path.resolve(__dirname, "**/*.entity{.ts,.js}")],
             synchronize: true,
         }),
     ]

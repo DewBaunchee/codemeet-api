@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Profile} from "./profile.entity";
 
 @Entity()
 export class Person {
@@ -12,10 +13,15 @@ export class Person {
     @Column({type: "varchar", length: 255, nullable: true})
     public email: string;
 
-    @Column({name: "phone_number", type: "varchar", length: 15})
+    @Column({type: "varchar", length: 15})
     public phoneNumber: string;
 
     @Column({type: "varchar", length: 60})
     public password: string;
+
+    @OneToOne(() => Profile, profile => profile.person, {
+        cascade: ["insert", "update", "remove"]
+    })
+    profile: Profile;
 
 }

@@ -1,4 +1,4 @@
-import {Injectable} from '@nestjs/common';
+import {Injectable} from "@nestjs/common";
 import {from, map, Observable} from "rxjs";
 import {Person} from "../entity/person.entity";
 import {InjectRepository} from "@nestjs/typeorm";
