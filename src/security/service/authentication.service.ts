@@ -26,10 +26,7 @@ export class AuthenticationService {
 
     public login(person: Person) {
         return {
-            access_token: this.jwtService.sign(
-                {username: person.phoneNumber},
-                {expiresIn: this.getExpirationDate()}
-            )
+            access_token: this.jwtService.sign({id: person.id})
         };
     }
 
@@ -43,9 +40,5 @@ export class AuthenticationService {
 
     public generateSalt(): string {
         return this.passwordEncoder.generateSalt();
-    }
-
-    private getExpirationDate(): number {
-        return new Date().getTime() + this.configService.get("JWT_ACCESS_LIFETIME") * 60 * 1000;
     }
 }
