@@ -10,11 +10,16 @@ export class GeoLocation {
         type: "decimal",
         nullable: false,
     })
-    public longitude: number;
+    public latitude: number;
 
     @Column({
         type: "decimal",
         nullable: false,
     })
-    public latitude: number;
+    public longitude: number;
+
+    constructor(latitude?: number, longitude?: number) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 }

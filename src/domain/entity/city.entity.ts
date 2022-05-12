@@ -13,7 +13,7 @@ export class City {
         length: 40,
         nullable: false,
     })
-    public cityName: string;
+    public name: string;
 
     @ManyToOne(() => Region, {
         nullable: false,
@@ -25,6 +25,7 @@ export class City {
 
     @ManyToOne(() => GeoLocation, {
         nullable: false,
+        cascade: ["insert", "update", "remove"],
     })
     @JoinColumn({
         referencedColumnName: "id",

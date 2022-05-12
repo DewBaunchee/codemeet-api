@@ -6,7 +6,7 @@ export interface CityDto {
 
     id: number;
 
-    cityName: string;
+    name: string;
 
     region: RegionDto;
 
@@ -16,7 +16,7 @@ export interface CityDto {
 
 export const cityToDto = (entity: City): CityDto => ({
     id: entity.id,
-    cityName: entity.cityName,
+    name: entity.name,
     region: regionToDto(entity.region),
     geoLocation: geoLocationToDto(entity.geoLocation),
 });

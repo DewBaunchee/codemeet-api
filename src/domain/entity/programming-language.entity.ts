@@ -1,5 +1,19 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
 
+export enum ProgrammingLanguageKey {
+
+    JAVA = "java",
+    CPP = "cpp",
+    CSHARP = "csharp",
+    C = "c",
+    KOTLIN = "kotlin",
+    JAVASCRIPT = "javascript",
+    PYTHON = "python",
+    HTML = "html",
+    TYPESCRIPT = "typescript",
+
+}
+
 @Entity()
 export class ProgrammingLanguage {
 
@@ -7,7 +21,7 @@ export class ProgrammingLanguage {
         type: "varchar",
         length: 20,
     })
-    public key: string;
+    public key: ProgrammingLanguageKey;
 
     @Column({
         type: "varchar",

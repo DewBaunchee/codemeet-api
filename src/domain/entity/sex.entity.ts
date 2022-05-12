@@ -10,8 +10,8 @@ export enum SexType {
 export class Sex {
 
     @PrimaryColumn({
-        type: "enum",
-        enum: SexType,
+        type: "varchar",
+        length: 40,
     })
     public key: SexType;
 
