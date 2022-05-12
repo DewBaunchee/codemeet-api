@@ -20,6 +20,7 @@ export class Person {
     public password: string;
 
     @OneToOne(() => Profile, profile => profile.person, {
+        nullable: false,
         cascade: ["insert", "update", "remove"]
     })
     profile: Profile;
