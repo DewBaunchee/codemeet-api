@@ -5,6 +5,9 @@ import {ConfigModule} from "@nestjs/config";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {DomainModule} from "./domain/domain.module";
 import * as path from "path";
+import {ObjectiveModule} from "./objective/objective.module";
+import {ExecutionModule} from "./execution/execution.module";
+import {SearchingModule} from "./searching/searching.module";
 
 @Module({
     imports: [
@@ -14,6 +17,9 @@ import * as path from "path";
         }),
         SecurityModule,
         DomainModule,
+        ObjectiveModule,
+        SearchingModule,
+        ExecutionModule,
         PersonModule,
         TypeOrmModule.forRoot({
             type: "postgres",

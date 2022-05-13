@@ -21,6 +21,7 @@ export class Person {
 
     @OneToOne(() => Profile, profile => profile.person, {
         nullable: false,
+        lazy: true,
         cascade: ["insert", "update", "remove"]
     })
     profile: Profile;
