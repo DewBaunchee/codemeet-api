@@ -10,17 +10,17 @@ export class PythonExecutor implements Executor {
         const path = tmp.fileSync().name;
         const fd = fs.openSync(path, "w");
         fs.writeSync(fd, code);
-        const compiling = spawn("python", [path]);
+        const childProcess = spawn("python", [path]);
 
-        compiling.on("close", () => {
+        childProcess.on("close", () => {
             fs.unlinkSync(path);
         });
 
         setTimeout(() => {
-            compiling.kill("SIGINT");
+            childProcess.kill("SIGINT");
         }, 10 * 60 * 1000);
 
-        return compiling;
+        return childProcess;
     }
 
     public getExecutingLanguage(): ProgrammingLanguageKey {
